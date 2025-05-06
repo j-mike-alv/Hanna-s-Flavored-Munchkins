@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hanna's Flavored Munchkins</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff8f0;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+    header p {
+      font-size: 1.2em;
+    }
+    .menu {
+      padding: 30px;
+    }
+    .menu-item {
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+      padding: 20px;
+    }
+    .menu-item img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-right: 20px;
+    }
+    .menu-details {
+      flex: 1;
+    }
+    .menu-details h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    form {
+      background-color: #fff;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    input, textarea, button {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e85b4f;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Hanna's Flavored Munchkins</h1>
+  <p>Delicious treats made with love!</p>
+</header>
+
+<section class="menu">
+  <h2 style="text-align:center;">Our Menu</h2>
+
+  <div class="menu-item">
+    <img src="classic.jpg" alt="Classic Munchkins">
+    <div class="menu-details">
+      <h3>Classic</h3>
+      <p>Strawberry and chocolate mix — <strong>₱5 each</strong></p>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <img src="ube.jpg" alt="Ube Munchkins">
+    <div class="menu-details">
+      <h3>Premium - Ube</h3>
+      <p>Delicious ube-filled munchkin — <strong>₱10 each</strong></p>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <img src="matcha.jpg" alt="Matcha Munchkins">
+    <div class="menu-details">
+      <h3>Premium - Matcha</h3>
+      <p>Refreshing matcha-filled munchkin — <strong>₱10 each</strong></p>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <img src="mango.jpg" alt="Mango Munchkins">
+    <div class="menu-details">
+      <h3>Premium - Mango</h3>
+      <p>Sweet mango-filled munchkin — <strong>₱10 each</strong></p>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <img src="chocolate.jpg" alt="Chocolate Munchkins">
+    <div class="menu-details">
+      <h3>Premium - Chocolate</h3>
+      <p>Rich chocolate-filled munchkin — <strong>₱10 each</strong></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 style="text-align: center;">Place Your Order</h2>
+  <form action="https://formsubmit.co/janmichaelalvarez1@gmail.com" method="POST">
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" name="Full Name" required>
+
+    <label for="contact">Contact Number:</label>
+    <input type="text" id="contact" name="Contact Number" required>
+
+    <label for="order">Order Details (Flavor and Quantity):</label>
+    <textarea id="order" name="Order Details" rows="4" placeholder="e.g. 5 pcs Classic, 3 pcs Ube" required></textarea>
+
+    <!-- Optional: Redirect after submit -->
+    <input type="hidden" name="_next" value="https://yourdomain.com/thankyou.html">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="New Munchkin Order!">
+
+    <button type="submit">Submit Order</button>
+  </form>
+</section>
+
+</body>
+</html>

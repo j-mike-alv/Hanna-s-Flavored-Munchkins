@@ -140,16 +140,18 @@
   </form>
 </section>
 
-<!-- Messenger Chat Plugin -->
 <div id="fb-root"></div>
+
+<!-- Your Chat Plugin code -->
 <div id="fb-customer-chat" class="fb-customerchat"></div>
 
 <script>
-  // Set your Page ID for the Messenger plugin
   var chatbox = document.getElementById('fb-customer-chat');
-  chatbox.setAttribute("page_id", "556062490933006");
+  chatbox.setAttribute("page_id", "61575068911897");
   chatbox.setAttribute("attribution", "biz_inbox");
+</script>
 
+<script>
   window.fbAsyncInit = function () {
     FB.init({
       xfbml: true,
@@ -158,10 +160,10 @@
   };
 
   (function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+    var js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
+    var fjs = d.getElementsByTagName(s)[0];
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 </script>

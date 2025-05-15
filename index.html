@@ -129,7 +129,7 @@
 
     <div id="gcash-details">
       <p>Send payment to GCash #: <strong>09953974180</strong></p>
-      <p>Send proof of payment via <a href="https://www.facebook.com/profile.php?id=61575068911897" target="_blank">Messenger</a>.</p>
+      <p>Send proof of payment via <a href="https://www.facebook.com/profile.php?id=100086812958136" target="_blank">Messenger</a>.</p>
     </div>
 
     <input type="hidden" name="_next" value="https://j-mike-alv.github.io/Hanna-s-Flavored-Munchkins/thankyou.html">
@@ -140,30 +140,33 @@
   </form>
 </section>
 
+<!-- Messenger Chat Plugin -->
 <div id="fb-root"></div>
-
-<!-- Your Chat Plugin code -->
 <div id="fb-customer-chat" class="fb-customerchat"></div>
 
 <script>
-  var chatbox = document.getElementById('fb-customer-chat');
-  chatbox.setAttribute("page_id", "61575068911897");
-  chatbox.setAttribute("attribution", "biz_inbox");
-</script>
+  function toggleDelivery() {
+    const fulfillment = document.getElementById("fulfillment").value;
+    document.getElementById("delivery-section").style.display = fulfillment === "Delivery" ? "block" : "none";
+  }
 
-<script>
+  function toggleGcash(show) {
+    document.getElementById("gcash-details").style.display = show ? "block" : "none";
+  }
+
+  var chatbox = document.getElementById('fb-customer-chat');
+  chatbox.setAttribute("page_id", "100086812958136");
+  chatbox.setAttribute("attribution", "biz_inbox");
+
   window.fbAsyncInit = function () {
-    FB.init({
-      xfbml: true,
-      version: 'v19.0'
-    });
+    FB.init({xfbml: true, version: 'v19.0'});
   };
 
   (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
-    var js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
-    var fjs = d.getElementsByTagName(s)[0];
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 </script>

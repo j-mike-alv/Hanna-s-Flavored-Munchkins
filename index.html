@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +59,7 @@
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
-    input, textarea, button {
+    input, textarea, button, select {
       display: block;
       width: 100%;
       margin-bottom: 10px;
@@ -74,6 +75,9 @@
     button:hover {
       background-color: #e85b4f;
     }
+    #delivery-section, #gcash-details {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -86,45 +90,11 @@
 <section class="menu">
   <h2 style="text-align:center;">Our Menu</h2>
 
-  <div class="menu-item">
-    <img src="classic.jpg" alt="Classic Munchkins">
-    <div class="menu-details">
-      <h3>Classic</h3>
-      <p>Strawberry and chocolate mix — <strong>₱5 each</strong></p>
-    </div>
-  </div>
-
-  <div class="menu-item">
-    <img src="ube.jpg" alt="Ube Munchkins">
-    <div class="menu-details">
-      <h3>Premium - Ube</h3>
-      <p>Delicious ube-filled munchkin — <strong>₱10 each</strong></p>
-    </div>
-  </div>
-
-  <div class="menu-item">
-    <img src="matcha.jpg" alt="Matcha Munchkins">
-    <div class="menu-details">
-      <h3>Premium - Matcha</h3>
-      <p>Refreshing matcha-filled munchkin — <strong>₱10 each</strong></p>
-    </div>
-  </div>
-
-  <div class="menu-item">
-    <img src="mango.jpg" alt="Mango Munchkins">
-    <div class="menu-details">
-      <h3>Premium - Mango</h3>
-      <p>Sweet mango-filled munchkin — <strong>₱10 each</strong></p>
-    </div>
-  </div>
-
-  <div class="menu-item">
-    <img src="chocolate.jpg" alt="Chocolate Munchkins">
-    <div class="menu-details">
-      <h3>Premium - Chocolate</h3>
-      <p>Rich chocolate-filled munchkin — <strong>₱10 each</strong></p>
-    </div>
-  </div>
+  <div class="menu-item"><img src="classic.jpg" alt="Classic Munchkins"><div class="menu-details"><h3>Classic</h3><p>Strawberry and chocolate mix — <strong>₱5 each</strong></p></div></div>
+  <div class="menu-item"><img src="ube.jpg" alt="Ube Munchkins"><div class="menu-details"><h3>Premium - Ube</h3><p>Delicious ube-filled munchkin — <strong>₱10 each</strong></p></div></div>
+  <div class="menu-item"><img src="matcha.jpg" alt="Matcha Munchkins"><div class="menu-details"><h3>Premium - Matcha</h3><p>Refreshing matcha-filled munchkin — <strong>₱10 each</strong></p></div></div>
+  <div class="menu-item"><img src="mango.jpg" alt="Mango Munchkins"><div class="menu-details"><h3>Premium - Mango</h3><p>Sweet mango-filled munchkin — <strong>₱10 each</strong></p></div></div>
+  <div class="menu-item"><img src="chocolate.jpg" alt="Chocolate Munchkins"><div class="menu-details"><h3>Premium - Chocolate</h3><p>Rich chocolate-filled munchkin — <strong>₱10 each</strong></p></div></div>
 </section>
 
 <section>
@@ -137,9 +107,31 @@
     <input type="text" id="contact" name="Contact Number" required>
 
     <label for="order">Order Details (Flavor and Quantity):</label>
-    <textarea id="order" name="Order Details" rows="4" placeholder="e.g. 5 pcs Classic, 3 pcs Ube" required></textarea>
+    <textarea id="order" name="Order Details" rows="4" required></textarea>
 
-    <!-- Redirect to Thank You page after submission -->
+    <label for="fulfillment">Pickup or Delivery:</label>
+    <select name="Order Type" id="fulfillment" onchange="toggleDelivery()">
+      <option value="Pickup">Pickup</option>
+      <option value="Delivery">Delivery</option>
+    </select>
+
+    <div id="delivery-section">
+      <label for="address">Delivery Address:</label>
+      <textarea id="address" name="Delivery Address" rows="2"></textarea>
+    </div>
+
+    <label>Payment Method:</label>
+    <input type="radio" id="cod" name="Payment Method" value="Cash on Delivery" checked onclick="toggleGcash(false)">
+    <label for="cod">Cash on Delivery</label>
+
+    <input type="radio" id="gcash" name="Payment Method" value="GCash" onclick="toggleGcash(true)">
+    <label for="gcash">GCash</label>
+
+    <div id="gcash-details">
+      <p>Send payment to GCash #: <strong>09953974180</strong></p>
+      <p>Send proof of payment via <a href="https://www.facebook.com/profile.php?id=100086812958136" target="_blank">Messenger</a>.</p>
+    </div>
+
     <input type="hidden" name="_next" value="https://j-mike-alv.github.io/Hanna-s-Flavored-Munchkins/thankyou.html">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_subject" value="New Munchkin Order!">
@@ -147,6 +139,37 @@
     <button type="submit">Submit Order</button>
   </form>
 </section>
+
+<!-- Messenger Chat Plugin -->
+<div id="fb-root"></div>
+<div id="fb-customer-chat" class="fb-customerchat"></div>
+
+<script>
+  function toggleDelivery() {
+    const fulfillment = document.getElementById("fulfillment").value;
+    document.getElementById("delivery-section").style.display = fulfillment === "Delivery" ? "block" : "none";
+  }
+
+  function toggleGcash(show) {
+    document.getElementById("gcash-details").style.display = show ? "block" : "none";
+  }
+
+  var chatbox = document.getElementById('fb-customer-chat');
+  chatbox.setAttribute("page_id", "100086812958136");
+  chatbox.setAttribute("attribution", "biz_inbox");
+
+  window.fbAsyncInit = function () {
+    FB.init({xfbml: true, version: 'v19.0'});
+  };
+
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
 
 </body>
 </html>

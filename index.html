@@ -145,21 +145,16 @@
 <div id="fb-customer-chat" class="fb-customerchat"></div>
 
 <script>
-  function toggleDelivery() {
-    const fulfillment = document.getElementById("fulfillment").value;
-    document.getElementById("delivery-section").style.display = fulfillment === "Delivery" ? "block" : "none";
-  }
-
-  function toggleGcash(show) {
-    document.getElementById("gcash-details").style.display = show ? "block" : "none";
-  }
-
+  // Set your Page ID for the Messenger plugin
   var chatbox = document.getElementById('fb-customer-chat');
   chatbox.setAttribute("page_id", "61575068911897");
   chatbox.setAttribute("attribution", "biz_inbox");
 
   window.fbAsyncInit = function () {
-    FB.init({xfbml: true, version: 'v19.0'});
+    FB.init({
+      xfbml: true,
+      version: 'v19.0'
+    });
   };
 
   (function (d, s, id) {
